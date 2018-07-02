@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <include resource="org/springframework/boot/logging/logback/base.xml" />
+    <logger name="com.esdeath.servicezuul" level="INFO" />
+
+    <!-- 测试环境+开发环境. 多个使用逗号隔开. -->
+    <springProfile name="test,dev">
+        <logger name="com.esdeath.servicezuul" level="INFO"/>
+    </springProfile>
+
+    <!-- 模拟生产环境 -->
+    <springProfile name="staging">
+        <logger name="com.esdeath.servicezuul" level="TRACE" />
+    </springProfile>
+
+    <!-- 生产环境. -->
+    <springProfile name="prod">
+        <logger name="com.esdeath.servicezuul" level="ERROR"/>
+    </springProfile>
+
+</configuration>

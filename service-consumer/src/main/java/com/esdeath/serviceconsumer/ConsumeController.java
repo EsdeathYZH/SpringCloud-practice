@@ -1,6 +1,8 @@
 package com.esdeath.serviceconsumer;
 
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
@@ -15,10 +17,13 @@ public class ConsumeController {
     @Autowired
     RestTemplate restTemplate;
 
+    private Logger logger = LoggerFactory.getLogger(this.getClass());
+
     @GetMapping("/consumer")
     @HystrixCommand(fallbackMethod = "error")
     public String info() {
-        return restTemplate.getForObject("http://eureka-client/info", String.class);
+        logger.info("消费者访问服务！");
+        return restTemplate.getForObject("http://eureka-client/service-info", String.class);
     }
 
     public String error(){
