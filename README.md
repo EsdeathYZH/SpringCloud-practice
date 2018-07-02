@@ -6,4 +6,6 @@
 + Ribbon
 + Hystrix
 + Zuul
++ zipkin
 + Spring Boot actuator
+#### 日志使用springboot默认的logback
